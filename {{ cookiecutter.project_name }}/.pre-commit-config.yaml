@@ -1,0 +1,47 @@
+# Run all pre-commits on all files using: pre-commit run --all-files
+default_stages:
+  - commit
+
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+    - id: check-merge-conflict
+    - id: double-quote-string-fixer
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+      exclude: '.md'
+    - id: no-commit-to-branch
+      # Add main and master explicitly even though
+      # they're protected by default
+      args: [
+        '--branch', 'master',
+        '--branch', 'main'
+      ]
+  # language set to local seems to be a reasonable approach
+  # with poetry since it handles development dependencies.
+  # It's also convenient since hooks will be executed on
+  # the same package versions as specified in poetry.lock.
+  - repo: local
+    hooks:
+    - id: black
+      name: Black code formatter
+      entry: poetry run black
+      language: system
+      types: [python]
+    - id: isort
+      name: Isort
+      entry: poetry run isort
+      language: system
+      types: [python]
+    - id: flake8
+      name: Flake8 linter
+      entry: poetry run flake8
+      language: system
+      types: [python]
+    - id: mypy
+      name: MyPy types checker
+      entry: poetry run mypy
+      language: system
+      types: [python]
