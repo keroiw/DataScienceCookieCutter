@@ -1,0 +1,1 @@
+Note: There's no point of templating github credentials because they will be supplied by each user that is working on the project (the user has to clone the repository and then provide these).
