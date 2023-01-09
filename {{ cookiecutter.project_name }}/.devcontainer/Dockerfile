@@ -1,7 +1,7 @@
 ARG PYTHON_VERSION
 FROM mcr.microsoft.com/vscode/devcontainers/python:$PYTHON_VERSION
 
-ENV DEBIAN_FRONTEND="noninteractive" 
+ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -24,11 +24,23 @@ RUN apt-get update && \
     liblzma-dev \
     ca-certificates \
     git \
-    openssh-client \ 
+    openssh-client \
     && apt-get autoremove -y \
     && apt-get clean -y
+
+# AWS CLI
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
+
+# Configure poetry and act for local testing of GitHub Actions
 
 USER vscode
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 RUN curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+# Configure AWS command-line completion
+
+RUN echo "complete -C '/usr/local/bin/aws_completer' aws" >> ~/.bashrc
