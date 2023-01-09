@@ -19,6 +19,8 @@ In order to leverage the template one can proceed as follows:
     * ```pip install cookiecutter```
 3. Execute: ```cookiecutter <path to cloned repository>``` and provide relevant data
 4. Rename ```env.example``` to ```.env```
+5. Rename ```cong/local/globals.example.yml``` to ```cong/local/globals.yml```
+6. Add ```conf/local/credentials.yml``` and ```cong/local/globals.yml``` to ```.gitignore```.
 
 ## Notes
 
