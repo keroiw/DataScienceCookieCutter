@@ -8,7 +8,6 @@ repos:
     rev: v4.3.0
     hooks:
     - id: check-merge-conflict
-    - id: double-quote-string-fixer
     - id: end-of-file-fixer
     - id: trailing-whitespace
       exclude: '.md'
@@ -45,3 +44,13 @@ repos:
       entry: poetry run mypy
       language: system
       types: [python]
+    # Uncomment to prevent pushes to branches that are not owned by the user.
+    # Branch ownership is denoted by its prefix that must match user name.
+    # - id: user-owned-branches
+    #   name: User owned branches
+    #   entry: ./.custom_pre_commit_hooks/user_owned_branches_only.sh
+    #   language: system
+    #   types: [python]
+    #   args: [
+    #     '-u', '{{ cookiecutter.github_name }}'
+    #   ]

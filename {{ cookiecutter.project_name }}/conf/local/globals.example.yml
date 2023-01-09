@@ -1,0 +1,3 @@
+user_name: {{ cookiecutter.github_name }}
+bucket_name: {{ cookiecutter.bucket_name }}
+branch: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # The branch that you're working on

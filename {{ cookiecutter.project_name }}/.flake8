@@ -1,7 +1,9 @@
-// following: https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html
+; following: https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html
 [flake8]
-max-line-lenght = 88
-extend-ignore = E203
+max-line-length = 88
+
+; W503 - line break before binary operator
+ignore = E203, W503
 
 exclude =
     .devcontainer \
@@ -13,4 +15,5 @@ exclude =
     .pytest_cache \
     .git \
     __pycache__ \
-    build
+    build \
+    docs
