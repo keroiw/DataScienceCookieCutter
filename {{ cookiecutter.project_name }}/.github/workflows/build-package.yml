@@ -1,0 +1,38 @@
+name: Build package
+
+on:
+  workflow_dispatch:
+  pull_request:
+    # Default: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
+    types: [opened, synchronized, reopened]
+
+
+env:
+  # These should be templated in cookiecutter
+  PYTHON_VERSION: 3.9
+  POETRY_VERSION: 1.3.1
+
+jobs:
+  build-package:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+      - name: Install dependencies
+        run: poetry install --no-interaction
+      - name: Run tests
+        run: poetry run pytest
+      - name: Flake8 check
+        run: poetry run flake8 .
+      - name: Black check
+        run: poetry run black --check .
+      - name: Isort check
+        run: poetry run isort --check .
+      - name: MyPy check
+        run: poetry run mypy .
