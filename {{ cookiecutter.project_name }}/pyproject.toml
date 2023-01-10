@@ -31,10 +31,9 @@ boto3 = "~1.24"
 ipykernel = "^6.19.4"
 fsspec = "^2022.11.0"
 s3fs = "^2022.11.0"
-kedro = "^0.18.4"
-kedro-datasets = {extras = ["pandas-csvdataset", "pandas-jsondataset", "pandas-parquetdataset"], version = "^1.0.0"}
 python-dotenv = "^0.21.0"
 openpyxl = "^3.0.10"
+kedro = {extras = ["pandas"], version = "^0.18.4"}
 
 [tool.poetry.dev-dependencies]
 pytest = "~7.1.1"
