@@ -35,3 +35,8 @@ fi
 # Install pre-commit hooks
 
 poetry run pre-commit install --install-hooks
+
+# Configure Docker access
+
+sudo chown vscode /var/run/docker.sock
+sudo chgrp vscode /var/run/docker.sock

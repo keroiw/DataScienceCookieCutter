@@ -25,6 +25,8 @@ RUN apt-get update && \
     ca-certificates \
     git \
     openssh-client \
+    # https://forums.docker.com/t/how-can-i-run-docker-command-inside-a-docker-container/337
+    docker.io \
     && apt-get autoremove -y \
     && apt-get clean -y
 
