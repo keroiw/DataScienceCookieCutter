@@ -48,7 +48,7 @@ repos:
     # Branch ownership is denoted by its prefix that must match user name.
     # - id: user-owned-branches
     #   name: User owned branches
-    #   entry: ./.custom_pre_commit_hooks/user_owned_branches_only.sh
+    #   entry: ./.hooks/user_owned_branches_only.sh
     #   language: system
     #   types: [python]
     #   args: [
