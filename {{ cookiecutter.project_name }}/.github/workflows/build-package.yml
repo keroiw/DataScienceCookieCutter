@@ -36,3 +36,17 @@ jobs:
         run: poetry run isort --check .
       - name: MyPy check
         run: poetry run mypy .
+      - name: Build package
+        run: poetry build
+      - name: Prepare build artifacts
+        id: prepare_build_artifacts
+        run: ./.github/scripts/prepare_build_results.sh
+        shell: bash
+      - name: Upload artifacts to S3
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: ${{ steps.prepare_build_artifacts.outputs.build_folder_name }}
+          destination_dir: ${{ steps.prepare_build_artifacts.outputs.destination_folder_name }}

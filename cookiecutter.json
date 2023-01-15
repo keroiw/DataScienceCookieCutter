@@ -3,6 +3,7 @@
     "github_email": "",
     "project_name": "python_project",
     "package_name": "python_package",
+    "step_name": "",
     "python_version": "3.8",
     "short_description": "",
     "version": "0.1.0",
